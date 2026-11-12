@@ -76,13 +76,20 @@ body {
 }
 
 #root,
-[data-rk],
+#root > [data-rk],
 .app-shell {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
   width: 100%;
+}
+
+/* Ensure RainbowKit portal & modal dialogs preserve their native layout & sizing */
+body > [data-rk] {
+  min-height: 0 !important;
+  width: auto !important;
+  display: block !important;
 }
 
 main {

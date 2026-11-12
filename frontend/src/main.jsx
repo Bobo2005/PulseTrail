@@ -57,7 +57,7 @@ function Root() {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={qc}>
-        <RainbowKitProvider theme={rkTheme}>
+        <RainbowKitProvider theme={rkTheme} modalSize="compact">
           <App theme={theme} onToggleTheme={toggleTheme} />
         </RainbowKitProvider>
       </QueryClientProvider>
