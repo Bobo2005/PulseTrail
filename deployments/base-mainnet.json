@@ -1,0 +1,13 @@
+{
+  "network": "base-mainnet",
+  "chainId": 8453,
+  "rpcUrl": "https://mainnet.base.org",
+  "explorer": "https://basescan.org",
+  "deployer": "0xdF58893311e54E50305AfEea93BdF9a1f91ED561",
+  "callbackProxy": "0x0D3E76De6bC44309083cAAFdB49A088B8a250947",
+  "uniswapRouter": "0x5898BFB5276579E0A8b08998792d89Cb2200CC5b",
+  "pulseTrailCallback": "0xCacFaA320D05Ab1b96CD48C8e8bafe4E4928fAde",
+  "monitoredPair": "0x1B2b40430FB0263c7BA25cf4B4FF9462c9153394",
+  "tokenIn": "0x43613f719a59D8484ABDF416ecea590D397e1058",
+  "tokenOut": "0x0148092cAA0C83431eFd7306F6c88D10e9978Da6"
+}

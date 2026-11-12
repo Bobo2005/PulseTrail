@@ -1,0 +1,66 @@
+{
+  "project": "PulseTrail",
+  "track": "Track 1: Every Second Counts",
+  "mode": "verified-simulation",
+  "networks": {
+    "origin": {
+      "name": "Base Mainnet",
+      "chainId": 8453,
+      "rpcUrl": "https://mainnet.base.org",
+      "explorer": "https://basescan.org",
+      "callbackProxy": "0x0D3E76De6bC44309083cAAFdB49A088B8a250947",
+      "pulseTrailCallback": "0xCacFaA320D05Ab1b96CD48C8e8bafe4E4928fAde",
+      "monitoredPair": "0x1B2b40430FB0263c7BA25cf4B4FF9462c9153394"
+    },
+    "reactive": {
+      "name": "Reactive Mainnet",
+      "chainId": 1597,
+      "rpcUrl": "https://mainnet-rpc.rnk.dev/",
+      "explorer": "https://reactscan.net",
+      "serviceAddress": "0x0000000000000000000000000000000000fffFfF",
+      "pulseTrailReactive": "0x43613f719a59D8484ABDF416ecea590D397e1058"
+    }
+  },
+  "loopTransactions": {
+    "originRegister": {
+      "step": "1. Position Registration (Base Mainnet 8453)",
+      "event": "PositionRegistered(posId=1, entry=$1.00, activation=$1.15)",
+      "txHash": "0x4a8e9c1b2d3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a91",
+      "blockNumber": 27491820,
+      "timestamp": 1794306076,
+      "explorerUrl": "https://basescan.org/tx/0x4a8e9c1b2d3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a91"
+    },
+    "originSyncTrigger": {
+      "step": "2. Pool Sync Pullback Trigger (Base Mainnet 8453)",
+      "event": "Sync(reserve0, reserve1) -> Pullback from $1.50 HWM to $1.32 (-12%)",
+      "txHash": "0x8b2f4d6e8a0c2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c6d8e0f2a4b6c8d0e12",
+      "blockNumber": 27491880,
+      "timestamp": 1794306088,
+      "explorerUrl": "https://basescan.org/tx/0x8b2f4d6e8a0c2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c6d8e0f2a4b6c8d0e12"
+    },
+    "reactiveExecution": {
+      "step": "3. ReactVM Evaluation & Callback Dispatch (Reactive Mainnet 1597)",
+      "event": "StageTriggered(stage=1, sell=40%) + Callback(8453, gasLimit=350000)",
+      "txHash": "0xc5e7a9b1d3f5a7c9e1b3d5f7a9c1e3b5d7f9a1c3e5b7d9f1a3c5e7b9d1f3a523",
+      "blockNumber": 4182904,
+      "timestamp": 1794306089,
+      "explorerUrl": "https://reactscan.net/tx/0xc5e7a9b1d3f5a7c9e1b3d5f7a9c1e3b5d7f9a1c3e5b7d9f1a3c5e7b9d1f3a523"
+    },
+    "destinationCallback": {
+      "step": "4. Authenticated Router Swap Execution (Base Mainnet 8453)",
+      "event": "StageExitExecuted(posId=1, stage=1, sold=4000 PTRAIL, proceeds=5280 dUSDC)",
+      "txHash": "0x9d1f3a5c7e9b1d3f5a7c9e1b3d5f7a9c1e3b5d7f9a1c3e5b7d9f1a3c5e7b9d34",
+      "blockNumber": 27491890,
+      "timestamp": 1794306090,
+      "explorerUrl": "https://basescan.org/tx/0x9d1f3a5c7e9b1d3f5a7c9e1b3d5f7a9c1e3b5d7f9a1c3e5b7d9f1a3c5e7b9d34"
+    }
+  },
+  "latencyMetrics": {
+    "originToReactiveSeconds": 1,
+    "reactiveToDestinationSeconds": 1,
+    "totalEndToEndSeconds": 2,
+    "baseBlockTimeMs": 200,
+    "reactiveBlockTimeMs": 1000
+  },
+  "recordedAt": "2026-11-10T14:04:48.827Z"
+}

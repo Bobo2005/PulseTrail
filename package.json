@@ -1,0 +1,34 @@
+{
+  "name": "pulsetrail",
+  "version": "1.0.0",
+  "description": "Autonomous Volatility-Adaptive & Multi-Stage Trailing Stop-Loss on Reactive Mainnet (1597) & Base Mainnet (8453)",
+  "main": "scripts/pulsetrail-cli.js",
+  "scripts": {
+    "build": "forge build",
+    "test": "forge test -vvv",
+    "test:gas": "forge test --gas-report",
+    "deploy:base": "forge script script/DeployBaseMainnet.s.sol:DeployBaseMainnet --rpc-url base_mainnet --broadcast",
+    "deploy:reactive": "forge script script/DeployReactiveMainnet.s.sol:DeployReactiveMainnet --rpc-url reactive_mainnet --broadcast",
+    "loop:mainnet": "node scripts/run-mainnet-loop.js",
+    "verify:latency": "node scripts/verify-latency.js",
+    "cli": "node scripts/pulsetrail-cli.js",
+    "frontend:dev": "npm --prefix frontend run dev",
+    "frontend:build": "npm --prefix frontend run build",
+    "frontend:preview": "npm --prefix frontend run preview"
+  },
+  "keywords": [
+    "reactive-network",
+    "base-mainnet",
+    "trailing-stop",
+    "defi",
+    "uniswap-v2",
+    "volatility-adaptive"
+  ],
+  "author": "PulseTrail Team",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.4"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "network": "reactive-mainnet",
+  "chainId": 1597,
+  "rpcUrl": "https://mainnet-rpc.rnk.dev/",
+  "explorer": "https://reactscan.net",
+  "deployer": "0xdF58893311e54E50305AfEea93BdF9a1f91ED561",
+  "serviceAddress": "0x0000000000000000000000000000000000fffFfF",
+  "originChainId": 8453,
+  "pulseTrailCallback": "0xCacFaA320D05Ab1b96CD48C8e8bafe4E4928fAde",
+  "subscribedPair": "0x1B2b40430FB0263c7BA25cf4B4FF9462c9153394",
+  "pulseTrailReactive": "0x43613f719a59D8484ABDF416ecea590D397e1058"
+}
