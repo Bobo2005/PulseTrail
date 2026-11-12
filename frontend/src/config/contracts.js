@@ -67,56 +67,8 @@ export const TXS=[
 ];
 
 export const LOOP_BENCHMARK=[
- {
-  step:'0. Setup & Escrow',
-  chain:'Base Mainnet',
-  chainId:8453,
-  event:'PositionRegistered (posId 1)',
-  timing:'T₀ - 12s',
-  latency:'Baseline',
-  countdown:'Setup Phase',
-  block:27491820,
-  timestamp:1794306076,
-  hash:'0x4a8e9c1b2d3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a91',
-  status:'Verified Benchmark'
- },
- {
-  step:'1. Origin Pullback (T₀)',
-  chain:'Base Mainnet',
-  chainId:8453,
-  event:'Sync ($1.50 → $1.32 dip)',
-  timing:'T₀ (0.00s)',
-  latency:'Trigger Tick',
-  countdown:'2.00s left',
-  block:27491880,
-  timestamp:1794306088,
-  hash:'0x8b2f4d6e8a0c2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c6d8e0f2a4b6c8d0e12',
-  status:'Verified Benchmark'
- },
- {
-  step:'2. ReactVM Brain (T₁)',
-  chain:'Reactive Mainnet',
-  chainId:1597,
-  event:'StageTriggered → Callback(350k gas)',
-  timing:'T₀ + 1.00s',
-  latency:'ΔT = 1.00s',
-  countdown:'1.00s left',
-  block:4182904,
-  timestamp:1794306089,
-  hash:'0xc5e7a9b1d3f5a7c9e1b3d5f7a9c1e3b5d7f9a1c3e5b7d9f1a3c5e7b9d1f3a523',
-  status:'Verified Benchmark'
- },
- {
-  step:'3. Destination Swap (T₂)',
-  chain:'Base Mainnet',
-  chainId:8453,
-  event:'executeStageExit (40% sold to USDC)',
-  timing:'T₀ + 2.00s',
-  latency:'ΔT = 1.00s (Total: 2.0s)',
-  countdown:'0.00s · Done',
-  block:27491890,
-  timestamp:1794306090,
-  hash:'0x9d1f3a5c7e9b1d3f5a7c9e1b3d5f7a9c1e3b5d7f9a1c3e5b7d9f1a3c5e7b9d34',
-  status:'Verified Benchmark'
- }
+ {step:'0. Setup & Escrow',chain:'Base Mainnet (8453)',event:'PositionRegistered (posId 1)',timing:'T₀ - 12s',latency:'Baseline',status:'Verified Benchmark'},
+ {step:'1. Origin Pullback (T₀)',chain:'Base Mainnet (8453)',event:'Sync ($1.50 → $1.32 dip)',timing:'T₀ (0.0s)',latency:'Trigger Tick',status:'Verified Benchmark'},
+ {step:'2. ReactVM Brain (T₁)',chain:'Reactive Mainnet (1597)',event:'StageTriggered → Callback(350k gas)',timing:'T₀ + 1.0s',latency:'ΔT = 1.00s',status:'Verified Benchmark'},
+ {step:'3. Destination Swap (T₂)',chain:'Base Mainnet (8453)',event:'executeStageExit (40% sold to USDC)',timing:'T₀ + 2.0s',latency:'ΔT = 1.00s (Total: 2.0s)',status:'Verified Benchmark'}
 ];
