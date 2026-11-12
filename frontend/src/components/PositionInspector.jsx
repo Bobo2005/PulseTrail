@@ -116,7 +116,7 @@ function PositionCard({id, p, onCancel}) {
       <p className="small mono">
         Protecting {f(p.initialBalance, di)} · {left}% still held
       </p>
-      <div className="row mono" style={{fontSize: 13, marginTop: 4}}>
+      <div className="row pos-stats-row mono" style={{fontSize: 13, marginTop: 4}}>
         <span>Entry: <b>{Number(formatUnits(p.entryPrice, 18)).toPrecision(4)}</b></span>
         <span>Target: <b>{Number(formatUnits(p.activationPrice, 18)).toPrecision(4)}</b> (+{profitPct}%)</span>
       </div>

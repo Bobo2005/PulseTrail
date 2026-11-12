@@ -67,7 +67,11 @@ export default function Header({route, theme, onToggleTheme}){
       </span>
       <span className="theme-toggle-label">{isWhite ? 'White' : 'Dark'}</span>
      </button>
-     <ConnectButton chainStatus="icon" showBalance={false}/>
+     <ConnectButton
+      chainStatus={{ smallScreen: 'none', largeScreen: 'icon' }}
+      showBalance={false}
+      accountStatus={{ smallScreen: 'avatar', largeScreen: 'address' }}
+     />
     </div>
    </div>
   </header>

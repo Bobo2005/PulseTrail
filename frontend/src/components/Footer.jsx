@@ -10,19 +10,21 @@ const GithubIcon = () => (
 export default function Footer(){
  return (
   <footer>
-   <div className="wrap">
-    <span className="logo" style={{display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '20px'}}>
+   <div className="wrap ft-wrap">
+    <span className="logo ft-logo">
      <img src={logoImg} alt="" width="24" height="25" style={{imageRendering: 'pixelated'}} />
      PulseTrail
     </span>
-    <a href={'https://basescan.org/address/' + ADDR.vault} target="_blank" rel="noreferrer">Vault contract</a>
-    <a href="#proof">On-chain proof</a>
-    <a href="#docs">Docs</a>
-    <a href="https://github.com/Bobo2005/PulseTrail" target="_blank" rel="noreferrer" style={{display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: 700}}>
-     <GithubIcon />
-     GitHub
-    </a>
-    <span className="small">Autonomous smart stop-losses that ratchet up as your tokens climb. Not financial advice.</span>
+    <nav className="ft-links" aria-label="Footer links">
+     <a href={'https://basescan.org/address/' + ADDR.vault} target="_blank" rel="noreferrer">Vault contract ↗</a>
+     <a href="#proof">On-chain proof</a>
+     <a href="#docs">Docs</a>
+     <a href="https://github.com/Bobo2005/PulseTrail" target="_blank" rel="noreferrer" style={{display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: 700}}>
+      <GithubIcon />
+      GitHub
+     </a>
+    </nav>
+    <span className="small ft-disclaimer">Autonomous smart stop-losses that ratchet up as your tokens climb. Not financial advice.</span>
    </div>
   </footer>
  );

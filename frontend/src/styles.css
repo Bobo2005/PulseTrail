@@ -219,6 +219,7 @@ header {
   }
   .hdr-actions {
     grid-area: actions;
+    gap: 8px;
   }
   .hdr-nav {
     grid-area: nav;
@@ -226,7 +227,7 @@ header {
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
-    gap: 18px;
+    gap: 16px;
     padding: 6px 2px 2px;
     border-top: 1px dashed var(--dot);
     scrollbar-width: none;
@@ -236,6 +237,48 @@ header {
   }
   .hide-mobile {
     display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hdr-wrap {
+    gap: 6px 8px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+  }
+  .logo {
+    font-size: 18px;
+    gap: 7px;
+  }
+  .logo img {
+    width: 26px !important;
+    height: 27px !important;
+  }
+  .badge {
+    font-size: 9px;
+    line-height: 16px;
+    padding: 0 5px;
+  }
+  .hdr-actions {
+    gap: 6px;
+  }
+  .hdr-nav {
+    gap: 14px;
+    padding: 5px 0 2px;
+  }
+  .hdr-nav a {
+    font-size: 14px;
+    padding: 4px 2px;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo {
+    font-size: 16px;
+    gap: 5px;
+  }
+  .badge {
+    display: none;
   }
 }
 
@@ -674,10 +717,17 @@ h2 {
   gap: clamp(16px, 2.2vw, 28px);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
+  .g3 {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 540px) {
   .g3 {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 }
 
@@ -918,7 +968,7 @@ label.l {
 
 table {
   width: 100%;
-  min-width: 580px;
+  min-width: 540px;
   border-collapse: separate;
   border-spacing: 0;
   border: 3px solid var(--ink);
@@ -954,6 +1004,9 @@ th:last-child {
 }
 
 @media (max-width: 600px) {
+  table {
+    min-width: 480px;
+  }
   th, td {
     padding: 8px 10px;
     font-size: 12px;
@@ -978,6 +1031,13 @@ th:last-child {
 .acts .btn {
   font-size: 13px;
   padding: 6px 14px;
+}
+
+.pos-stats-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 /* ==========================================================================
@@ -1069,6 +1129,21 @@ th:last-child {
   box-shadow: 2px 2px 0 #111;
 }
 
+@media (max-width: 520px) {
+  .share-bar {
+    gap: 6px;
+  }
+  .share-btn {
+    flex: 1 1 calc(50% - 6px);
+    justify-content: center;
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+  .share-btn.copy {
+    flex: 1 1 100%;
+  }
+}
+
 details {
   border: 3px solid var(--ink);
   border-radius: 14px;
@@ -1094,6 +1169,21 @@ details p {
 }
 
 /* ==========================================================================
+   CTA Card Responsiveness
+   ========================================================================== */
+#cta-start .card {
+  padding: clamp(28px, 5vw, 48px) clamp(16px, 3.5vw, 28px) !important;
+}
+
+@media (max-width: 520px) {
+  #cta-start .btn {
+    width: 100%;
+    font-size: 16px !important;
+    padding: 12px 18px !important;
+  }
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 footer {
@@ -1103,19 +1193,83 @@ footer {
   background: var(--card);
 }
 
-footer .wrap {
+.ft-wrap {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  gap: 18px;
   flex-wrap: wrap;
   align-items: center;
 }
 
-@media (max-width: 640px) {
-  footer .wrap {
+.ft-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+}
+
+.ft-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 24px);
+  flex-wrap: wrap;
+}
+
+.ft-links a {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  transition: opacity 0.15s;
+}
+
+.ft-links a:hover {
+  text-decoration: underline;
+}
+
+.ft-disclaimer {
+  max-width: 320px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--mut);
+}
+
+@media (max-width: 860px) {
+  .ft-wrap {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 16px;
+  }
+  .ft-links {
+    width: 100%;
+    gap: 14px 18px;
+  }
+  .ft-disclaimer {
+    max-width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Mobile Form Inputs & Touch Targets (Prevents iOS Safari auto-zoom)
+   ========================================================================== */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="number"],
+  input[type="search"],
+  input:not([type="range"]):not([type="checkbox"]):not([type="radio"]) {
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .chip {
+    padding: 5px 10px;
+    font-size: 13px;
+    min-height: 36px;
+  }
+  .tabs button {
+    padding: 6px 14px;
+    font-size: 14px;
+    min-height: 36px;
   }
 }
 
