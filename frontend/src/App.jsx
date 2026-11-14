@@ -4,20 +4,28 @@ import Footer from './components/Footer.jsx';
 import RatchetChart from './components/RatchetChart.jsx';
 import StrategyBuilder from './components/StrategyBuilder.jsx';
 import PositionInspector from './components/PositionInspector.jsx';
+import PositionDetailInspector from './components/PositionDetailInspector.jsx';
 import ProofTable from './components/ProofTable.jsx';
 import {PRESETS} from './config/contracts.js';
 import homeHtml from './content/home.html?raw';
 import docsHtml from './content/docs.html?raw';
 
 const R=['home','app','positions','proof','docs'];
-const cur=()=>{const h=location.hash.slice(1);return R.includes(h)?h:'home'};
+const parseHash=()=>{
+ const h=location.hash.slice(1);
+ if(h.startsWith('inspect/')){
+  const id=h.slice('inspect/'.length);
+  if(/^\d+$/.test(id))return {route:'inspect',inspectId:id};
+ }
+ return {route:R.includes(h)?h:'home',inspectId:null};
+};
 
 export default function App({theme, onToggleTheme}){
- const [route,setRoute]=useState(cur()),[demo,setDemo]=useState(0);
+ const [{route,inspectId},setNav]=useState(parseHash()),[demo,setDemo]=useState(0);
  const [cfg,setCfg]=useState({tok:'PTRAIL',amount:'',preset:'rocket',act:PRESETS.rocket.act,trails:PRESETS.rocket.trails,wiggle:false});
 
  useEffect(()=>{
-  const f=()=>{setRoute(cur());window.scrollTo(0,0)};
+  const f=()=>{setNav(parseHash());window.scrollTo(0,0)};
   addEventListener('hashchange',f);
   return()=>removeEventListener('hashchange',f);
  },[]);
@@ -38,7 +46,8 @@ export default function App({theme, onToggleTheme}){
       <div className="frame"><RatchetChart cfg={cfg} demoKey={demo}/></div></div>
      <div dangerouslySetInnerHTML={{__html:homeHtml}}/></>}
     {route==='app'&&page(['Protect my tokens','Pick a token and a strategy. The chart below shows how it would behave.',<><StrategyBuilder cfg={cfg} setCfg={setCfg} go={go}/><div className="card" style={{marginTop:24}}><RatchetChart cfg={cfg}/></div></>])}
-    {route==='positions'&&page(['My positions','Loaded straight from the vault contract when your wallet is connected.',<PositionInspector go={go}/>])}
+    {route==='positions'&&page(['My positions','Loaded straight from the vault contract when your wallet is connected. Click any position to inspect Reactive Brain telemetry.',<PositionInspector go={go}/>])}
+    {route==='inspect'&&page(['Position inspector','Live vault state on Base Mainnet paired with Reactive Brain (Chain 1597) telemetry.',<PositionDetailInspector id={inspectId} go={go}/>])}
     {route==='proof'&&page(['Checked on chain','Everything a judge or careful trader needs to verify.',<ProofTable/>])}
     {route==='docs'&&<div dangerouslySetInnerHTML={{__html:docsHtml}}/>}
    </main>

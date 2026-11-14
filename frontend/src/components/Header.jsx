@@ -47,7 +47,7 @@ export default function Header({route, theme, onToggleTheme}){
      <a className="logo" href="#home"><Mascot/>PulseTrail <span className="badge">BASE</span></a>
     </div>
     <nav className="hdr-nav">
-     {L.map(([k,t])=><a key={k} href={'#'+k} className={route===k?'cur':''}>{t}</a>)}
+     {L.map(([k,t])=><a key={k} href={'#'+k} className={(route===k||(k==='positions'&&route==='inspect'))?'cur':''}>{t}</a>)}
     </nav>
     <div className="hdr-actions">
      <span className="pill hide-mobile"><span className="dot"/>Base · fast (&lt;2s)</span>

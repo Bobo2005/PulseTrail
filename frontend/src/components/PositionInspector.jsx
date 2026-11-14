@@ -50,6 +50,7 @@ function ShareShieldedPosition({shareText}) {
         rel="noreferrer"
         className="share-btn farcaster"
         title="Share on Farcaster (Warpcast)"
+        onClick={e => e.stopPropagation()}
       >
         <FarcasterIcon />
         <span>Farcaster</span>
@@ -60,6 +61,7 @@ function ShareShieldedPosition({shareText}) {
         rel="noreferrer"
         className="share-btn twitter"
         title="Share on Twitter / X"
+        onClick={e => e.stopPropagation()}
       >
         <XIcon />
         <span>Twitter / X</span>
@@ -67,7 +69,7 @@ function ShareShieldedPosition({shareText}) {
       <button
         type="button"
         className={`share-btn copy ${copied ? 'copied' : ''}`}
-        onClick={handleCopy}
+        onClick={e => { e.stopPropagation(); handleCopy(); }}
         title="Copy proof text to clipboard"
       >
         {copied ? '✓ Copied!' : '📋 Copy'}
@@ -76,7 +78,7 @@ function ShareShieldedPosition({shareText}) {
   );
 }
 
-function PositionCard({id, p, onCancel}) {
+function PositionCard({id, p, onCancel, onInspect}) {
   const ti = tk(p.tokenIn);
   const to = tk(p.tokenOut);
 
@@ -106,7 +108,14 @@ function PositionCard({id, p, onCancel}) {
   const shareText = `🛡️ Just secured ${f(p.initialBalance, di)} $${symbolIn} with an autonomous volatility-adaptive trailing stop on @base powered by @reactive_net. Non-custodial, 0 private keys shared. #PulseTrail #ReactiveOmni`;
 
   return (
-    <div className="card">
+    <div
+      className="card pos-card-clickable"
+      role="button"
+      tabIndex={0}
+      onClick={() => onInspect(id)}
+      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onInspect(id); } }}
+      title="Click to inspect live Reactive Brain telemetry"
+    >
       <div className="row">
         <b style={{fontSize: 22, display: 'flex', alignItems: 'center', gap: 6}}>
           {symbolIn} <span style={{opacity: 0.6}}>#{String(id)}</span>
@@ -120,13 +129,16 @@ function PositionCard({id, p, onCancel}) {
         <span>Entry: <b>{Number(formatUnits(p.entryPrice, 18)).toPrecision(4)}</b></span>
         <span>Target: <b>{Number(formatUnits(p.activationPrice, 18)).toPrecision(4)}</b> (+{profitPct}%)</span>
       </div>
-      <p className="mono" style={{fontWeight: 700, margin: '8px 0'}}>
-        Banked: {f(p.totalProceeds, dout)} {to?.symbol || 'WETH'}
-      </p>
+      <div className="row" style={{margin: '8px 0'}}>
+        <p className="mono" style={{fontWeight: 700, margin: 0}}>
+          Banked: {f(p.totalProceeds, dout)} {to?.symbol || 'WETH'}
+        </p>
+        <span className="pos-inspect-link mono">Inspect telemetry →</span>
+      </div>
       <LadderStepper stage={p.currentStage} done={p.status === 1} act={profitPct / 100}/>
       {live && (
         <div className="acts" style={{marginTop: 12}}>
-          <button className="btn sm" onClick={() => onCancel(id)}>Cancel and withdraw tokens</button>
+          <button className="btn sm" onClick={e => { e.stopPropagation(); onCancel(id); }}>Cancel and withdraw tokens</button>
         </div>
       )}
       <ShareShieldedPosition shareText={shareText}/>
@@ -155,7 +167,7 @@ export default function PositionInspector({go}){
       {ids.data.map((id,n)=>{
         const p=list.data?.[n]?.result;
         if(!p)return <div key={id} className="card">Loading #{String(id)}…</div>;
-        return <PositionCard key={id} id={id} p={p} onCancel={cancel}/>;
+        return <PositionCard key={id} id={id} p={p} onCancel={cancel} onInspect={pid => go('inspect/' + String(pid))}/>;
       })}
     </div>
   );
